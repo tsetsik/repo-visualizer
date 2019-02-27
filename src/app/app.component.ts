@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './_models';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'repo-visualizer';
+  currentUser: User;
+  title = 'Repo Visualizer';
 }
