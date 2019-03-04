@@ -1,1 +1,13 @@
 <h2>General Info about: {{ name }}</h2>
+
+<a routerLink="/repos">go back</a>
+<div class="card">
+    <div class="card-header">
+        {{ name }}
+    </div>
+    <div class="card-block">
+        <div class="card-text">
+            <p *ngFor="let prop of generalinfo | keyvalue"><b>{{ prop.key }}</b>: {{ prop.value }}</p>
+        </div>
+    </div>
+</div>

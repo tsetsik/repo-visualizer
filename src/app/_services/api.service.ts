@@ -3,8 +3,7 @@ import { JwtService } from './jwt.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Repo } from '../_models';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,8 @@ export class ApiService {
     return this.request(`${environment.apiUrl}/repos`).pipe(map(data => data.map(item => item)));
   }
 
-  generalinfo(name) {
-    return {};
+  generalinfo(name): Observable<Object> {
+    return this.request(`${environment.apiUrl}/generalinfo/${name}`);
   }
 
   private request(url: string): Observable<any> {

@@ -26,7 +26,9 @@ export class GeneralinfoComponent implements OnInit {
 
   ngOnInit() {
     this.name = this.route.snapshot.params['name'];
-    this.generalinfo = this.api.generalinfo(name);
+    this.api.generalinfo(this.name).subscribe(info => {
+      this.generalinfo = info;
+    });
   }
 
 }
