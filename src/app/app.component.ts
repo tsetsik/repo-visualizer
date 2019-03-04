@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from './_models';
+import { Router } from '@angular/router';
+import { JwtService } from './_services';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,22 @@ import { User } from './_models';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  currentUser: User;
   title = 'Repo Visualizer';
+  username = null;
+
+  constructor(
+    private jwtService: JwtService,
+    private router: Router
+  ) {
+    if (this.jwtService.loggedIn) {
+      let data = this.jwtService.data();
+      this.username = data['username'];
+    }
+  }
+
+  logout() {
+    this.jwtService.logout();
+    this.router.navigate(['']);
+    this.username = null;
+  }
 }

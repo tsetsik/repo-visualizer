@@ -3,7 +3,13 @@
         <section class="title">
             <h3 class="welcome">Welcome to</h3>
             Repo Visualizer
-            <h5 class="hint">Use your github credentials in order to sign in</h5>
+            <h5 class="hint">
+                Use your github credentials in order to sign in
+                <a href="javascript:;" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-left">
+                    <clr-icon shape="info-circle" size="24"></clr-icon>
+                    <span class="tooltip-content">Look at the .env file in the server for the valid credentials</span>
+                </a>
+            </h5>
         </section>
         <div class="login-group">
             <clr-input-container>
@@ -12,11 +18,7 @@
             <clr-password-container>
                 <input type="password" formControlName="password" clrPassword placeholder="Password" />
             </clr-password-container>
-            <clr-checkbox-wrapper>
-                <label>Remember me</label>
-                <input type="checkbox" name="rememberMe" clrCheckbox/>
-            </clr-checkbox-wrapper>
-            <div class="error active" *ngIf="f.errors">
+            <div class="error active" *ngIf="loginFailed">
                 Invalid user name or password
             </div>
             <button type="submit" class="btn btn-primary">NEXT</button>

@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit  {
   loginForm: FormGroup;
-  loading = false;
+  loginFailed = false;
   submitted = false;
   returnUrl: string;
 
@@ -19,13 +19,11 @@ export class LoginComponent implements OnInit  {
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private jwtService: JwtService,
-      // private alertService: AlertService
+      private jwtService: JwtService
   ) {
       // redirect to home if already logged in
-      // if (this.jwtService.currentUserValue) { 
-      //     this.router.navigate(['/']);
-      // }
+      if (this.jwtService.loggedIn)
+          this.router.navigate(['/']);
   }
 
   ngOnInit() {
@@ -50,12 +48,12 @@ export class LoginComponent implements OnInit  {
     this.jwtService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    // this.alertService.error(error);
-                    this.loading = false;
-                });
+              data => {
+                if (!data.body['error'])
+                  this.router.navigate([this.returnUrl]);
+                else
+                  this.loginFailed = true;
+              }
+            );
   }
 }

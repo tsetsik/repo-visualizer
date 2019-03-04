@@ -1,0 +1,18 @@
+<h2>Repos page</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+          <th>id</th>
+          <th>Name</th>
+          <th>Full name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let repo of repos">
+          <td>{{ repo.id }}</td>
+          <td><a routerLink="/repos/generalinfo/{{ repo.name }}">{{ repo.name }}</a></td>
+          <td>{{ repo.full_name }}</td>
+        </tr>
+    </tbody>
+</table>

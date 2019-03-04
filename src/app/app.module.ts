@@ -10,12 +10,16 @@ import { HomeComponent } from './home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReposComponent } from './repos/repos.component';
+import { GeneralinfoComponent } from './generalinfo/generalinfo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ReposComponent,
+    GeneralinfoComponent
   ],
   imports: [
     BrowserModule,
