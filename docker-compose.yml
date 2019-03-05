@@ -1,11 +1,26 @@
-version: '2'
+version: "2"
+
 services:
   web:
     image: node:alpine
-    command: npm start
+    
     volumes:
+      # Mount the app code inside the container's `/usr/src/app` directory:
       - .:/usr/src/app
+
+    working_dir: /usr/src/app
+    
+    # Keep the stdin open, so we can attach to our app container's process
+    # and do things such as debugging, etc:
+    stdin_open: true
+
+    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container:
+    tty: true
+    
     ports:
-      - "4200:4200"
+      # Bind the host's 4200 port to the container's angular app
+      # port 4200:
+      - 4200:4200
     environment:
       NODE_ENV: development
+    command: npm start
