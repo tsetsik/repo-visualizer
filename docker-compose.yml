@@ -1,0 +1,11 @@
+version: '2'
+services:
+  web:
+    image: node:alpine
+    command: npm start
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "4200:4200"
+    environment:
+      NODE_ENV: development
